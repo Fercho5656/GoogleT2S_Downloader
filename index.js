@@ -27,6 +27,8 @@ const response = await fetch(`${URL}&token=${process.env.TOKEN}`, {
 const { audioContent } = await response.json()
 const buffer = Buffer.from(audioContent, 'base64')
 
-fs.writeFileSync(`${text}.mp3`, buffer)
+if (!fs.existsSync('./output')) fs.mkdirSync('./output')
+
+fs.writeFileSync(`./output/${text}.mp3`, buffer)
 
 
